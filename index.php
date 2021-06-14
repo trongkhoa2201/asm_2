@@ -1,30 +1,26 @@
-<html lang="en">
-<head>
-</head>
-<body>
-<?php
-$d=date("D");
-/*
-if ($d=="Fri")
-	echo "Have a nice weekend";
-else
-	echo"have a nice day";
-*/
-switch($d)
-{
-	
-	case "Mon":
-	    $d == "Mon";
-		echo "hello class, a happy week";
-	break;
-	case "Wed":
-	    $d == "Wed";
-		echo"Goodbye class. A happy weekend";
-	break;
-default:
-echo "No class today";
-	
-}
-?>
-</body>
-</html)
+<html>
+	<head>
+		<title>PHP Test</title>
+	</head>
+	<body>
+		<?php 
+		
+			echo '<p>TEST POSTGRESQL DATABASE </p>'; 
+			include("local_config.php");
+			# Connect to DATABASE
+			$pg_conn = pg_connect($conn_string);
+			# Get data by query
+			$result = pg_query($pg_conn, "select * from product;");
+			#var_dump(pg_fetch_all($result));
+
+		?>
+		<?php
+			include("db_display.php");
+			display_table($result);
+			pg_close();
+		?>
+		
+
+	</body>
+
+</html>
