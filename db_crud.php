@@ -33,8 +33,8 @@
 <title> ATN Shop Page </title>
 </head>
 <h1> Data for DIRECTOR <h1/>
-<body> onload = "JavaScript:AutoRefresh(<?php echo $sec*1000; ?>);">
-	<<p> Select a shop's database <p/>
+<body onload = "JavaScript:AutoRefresh(<?php echo $sec*1000; ?>);">
+	<p> Select a shop's database <p/>
 	<form 
 	<form action="" method="post">
          <select name = "db_selection">
