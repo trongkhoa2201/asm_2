@@ -1,5 +1,6 @@
 <?php
 	include("config.php");
+	#	$shop = $_GET["shop"];
 ?>
 <html>
 	<head>
@@ -9,7 +10,7 @@
 <h1> PAGE FOR SHOP A <h1/>
 	</head>
 	<body>
-		<form action-"" method-"post>
+		<form action="" method="post">
 	<input type="submit" name="deleteButton"
 			value="Input delete data"/> <br/><br/>
 			
@@ -21,12 +22,16 @@
 		$shop = $_SESSION["shop"];
         if(isset($_POST['updateButton'])) 
 		{
-            header("location : update1.php")
+            header("location : update1.php");
         }
+		if(isset($_POST['deleteButton'])) 
+		{
+            header("location : delete1.php");
+        }
+
 	?>
 
 	<?php
-	session_start();
 		function exceptions_error_handler($severity, $message, $filename, $lineno) 
 		{
 			throw new ErrorException($message, 0, $severity, $filename, $lineno);
@@ -41,7 +46,7 @@
 		if(isset($_POST['submitButton'])) 
 		{ 
 			//get input text
-			$input = $_POST['db_selection'];
+			$input = $_POST['db_prob'];
 		}
 		# Try to display SQL table
 		try 
@@ -64,7 +69,7 @@
 			echo "Caught exception: <br/>", $e->getMessage(), "\n";
 		}
 	?>
-						 	<br/>
+		<br/>
 	<?php
 		
 	if($_SESSION["name"]) {
