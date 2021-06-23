@@ -1,42 +1,105 @@
-	<body>
-		<?php 
+<?php
+	include("config.php");
+	#ob_start();
+	session_start();
+	$error = "";
+	if($_SERVER["REQUEST_METHOD"] == "POST") 
+	{
+		// username and password sent from form 
+		$login_user = $_POST['username'];
+		$login_pwd = $_POST['password']; 
+		# Create connection to Heroku Postgres
+		$pg_heroku = pg_connect($conn_string);
+		# Get data by query
+		$sql = "SELECT * FROM account WHERE username = '$login_user' and password = '$login_pwd'";
+		$result = pg_query($pg_heroku,$sql);
 		
+		$num_rows = pg_num_rows($result);
 
-			# DATABASE credential
-			$host_heroku = "ec2-54-91-188-254.compute-1.amazonaws.com";
-			$db_heroku = "d3avp12ob9g5o8";
-			$user_heroku = "vgvukkjgszbaba";
-			$pw_heroku = "6c4e536add531cd9f19cf9056e038d4919f1cd1eab35d78862f9d22525e61ee9";
-			# Create connection to Heroku Postgres
-			$conn_string = "host=$host_heroku port=5432 dbname=$db_heroku user=$user_heroku password=$pw_heroku";
-			# Connect to DATABASE
-			$pg_conn = pg_connect($conn_string);
-			# Get data by query
-			$result = pg_query($pg_conn, "select * from productb;");
-			#var_dump(pg_fetch_all($result));
-			
-			$numrows = pg_num_rows($result)
-		?>
-
-		<table border="1">
-		<tr>
-		<th>product_id</th>
-		<th>product_name</th>
-		<th>product_price</th>
-		</tr>
-		<?php
-			// Loop on rows in the result set
-			for($row_index = 0; $row_index < $numrows; $row_index++) 
+		// If result matched $login_user and $login_pwd, table row must be 1 row
+		if($num_rows == 1) 
+		{
+			$row = pg_fetch_array($result, 0);
+			$users = $row['username'];
+			$pass = $row['password'];
+		}
+        else 
+		{
+			$error = "Your Login Name or Password is invalid";
+		}	
+			if ($users == "boss" && $pass == "123qwe")
 			{
-				echo "<tr>\n";
-				$row = pg_fetch_array($result, $row_index);
-				echo " <td>", $row["product_id"], "</td><td>", 
-							  $row["product_name"], "</td><td>", 
-							  $row["price"], "</td></tr>";
+				header("location: db_crud.php");
 			}
-			pg_close();
-		?>
-		
-		</table>
+			if ($users == "user1" && $pass == "123qwe")
+			{
+				header("location: db_selection.php");
+			}
+			if ($users == "user2" && $pass == "123qwe") 
+			{
+				header("location: db_prob.php");
+			}
+			pg_close();	
+    }
+?>
 
-	</body>
+<html> 
+
+   <head>
+	
+      <title>ATN Login Page</title>
+      
+      <style type = "text/css">
+         body {
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:14px;
+         }
+         label {
+            font-weight:bold;
+            width:100px;
+            font-size:14px;
+         }
+         .box {
+			box-sizing: border-box;
+			font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+			font-size: 16px;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+         }
+		 h1 
+		{
+		  color: #666;
+		  margin: 20px 10px 0px;
+		  padding: 0px 30px 0px 30px;
+		  text-align: center;
+		}
+		
+      </style>
+      
+   </head>
+   <h1> Welcome to ATN 	<h1/>
+   
+   <body bgcolor = "#FFFFFF">
+	
+      <div align = "center">
+         <div style = "width:300px; border: solid 1px #333333; " align = "left">
+            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+				
+            <div style = "margin:30px">
+               
+               <form action = "" method = "post">
+                  <label>Username  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+                  <input type = "submit" value = "Submit"/><br />
+				</form>
+                <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
+               
+					
+            </div>
+				
+         </div>
+			
+      </div>
+
+   </body>
+</html>
