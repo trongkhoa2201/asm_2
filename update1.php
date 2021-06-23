@@ -1,3 +1,4 @@
+<title>UPDATE DATABASE</title>
 <?php
                         $host_heroku = "ec2-54-91-188-254.compute-1.amazonaws.com";
 			$db_heroku = "d3avp12ob9g5o8";
