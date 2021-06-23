@@ -28,7 +28,7 @@
 			header("Location: update1.php?shop=$shop");
 		}
 	?>
-		<p> Data for Shop B <p/>
+
 	<?php
 	session_start();
 		function exceptions_error_handler($severity, $message, $filename, $lineno) 
