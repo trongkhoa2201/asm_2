@@ -1,6 +1,5 @@
 <?php
 	include("config.php");
-	$shop = $_GET["shop"];
 ?>
 <html>
 	<head>
@@ -18,15 +17,12 @@
 			value="Input update data"/>
 	</form>
 	<?php
-	
-		if(isset($_POST['deleteButton']))
+		session_start();
+		$shop = $_SESSION["shop"];
+        if(isset($_POST['updateButton'])) 
 		{
-			header("Location: delete1.php?shop=$shop");
-		}
-		if(isset($_POST['updateButton']))
-		{
-			header("Location: update1.php?shop=$shop");
-		}
+            header("location : update1.php")
+        }
 	?>
 
 	<?php
