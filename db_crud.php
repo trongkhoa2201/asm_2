@@ -32,7 +32,7 @@
 <meta charset="UTF-8">
 <title> ATN Shop Page </title>
 </head>
-<h1> Data for DIRECTOR <h1/>
+<h1> Data for DIRECTOR BOARD <h1/>
 <body onload = "JavaScript:AutoRefresh(<?php echo $sec*1000; ?>);">
 	<p> Select a shop's database <p/>
 	<form 
@@ -54,7 +54,7 @@
 		set_error_handler('exceptions_error_handler');
 		$input = "ALL";
 		$table_name = "product";
-		include("local_config.php");
+		include("config.php");
 		include("db_display.php");
 		//check if form was submitted
 		if(isset($_POST['submitButton'])) 
