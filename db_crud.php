@@ -38,8 +38,8 @@
 	<form 
 	<form action="" method="post">
          <select name = "db_selection">
-            <option value = "SHOP_A" >Shop A</option>
-            <option value = "SHOP_B">Shop B</option>
+            <option value = "Shop_A" >Shop A</option>
+            <option value = "Shop_B">Shop B</option>
             <option value = "ALL" selected>All shops</option>
 			</select><br/>
 		<input type="submit" name="submitButton" value="Submit"/>
