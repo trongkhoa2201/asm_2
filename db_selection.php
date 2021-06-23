@@ -12,7 +12,7 @@
 	<body>
 		<form action-"" method-"post>
 	<input type="submit" name="deleteButton"
-			value="Input sell data"/> <br/><br/>
+			value="Input delete data"/> <br/><br/>
 			
 	<input type="submit" name="updateButton"
 			value="Input update data"/>
