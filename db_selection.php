@@ -30,9 +30,9 @@
 	?>
 		<p> Data for Shop A <p/>
 	<?php
-	include("fetch_a.php");
+	include("local_fetch.php");
 	$pg_conn = pg_connect($conn_string);
-	$table = "producta";
+	$table = "product";
 	pg_close();
 	?>
 	</body>
