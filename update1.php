@@ -7,71 +7,42 @@
 			$conn_string = "host=$host_heroku port=5432 dbname=$db_heroku user=$user_heroku password=$pw_heroku";
 			# Connect to DATABASE
 			$pg_conn = pg_connect($conn_string);
-
+			$result = pg_query($pg_conn, "select * from product;");
+			#var_dump(pg_fetch_all($result));
+			
+			$numrows = pg_num_rows($result)
+	$result = pg_Exec($conn,"SELECT * FROM product WHERE product_id, product_name, price, amount='$shop'");
+	if (!$result) {echo "A query error occurred.\n"; exit;}
+	$product_id = pg_Result($result, $shop, "product_id");
+	$product_name = pg_Result($result, $shop, "product_name");
+	$price = pg_Result($result, $shop, "price");
+	$amount = pg_Result($result, $shop, "amount");
+	pg_FreeResult($result);
+	pg_Close($conn);
 if (!$pg_conn)
 {
 die('Error: Could not connect: ' . pg_last_error());
 }
-$pi=$_GET['pi'];
-$pn=$_GET['pn'];
-$pp=$_GET['pp'];
-$stt=$_GET['stt'];
+
 ?>
 <html>
- <head>
- <title> Update </title>
- </head>
- <body>
- <br>
- <form action="" method="GET">
- <table border"0" bgcolor="white" align="center" cellspacing="20">
-
- <tr>
- <td>Product ID</td>
- <td><input type="text" value="<?php echo "$pi" ?>" name="productid" required></td>
- </tr>
-
- <tr>
- <td>Product Name</td>
- <td><input type="text" value="<?php echo "$pn" ?>" name="productname" required></td>
- </tr>
-
- <tr>
- <td>Product Price</td>
- <td><input type="text" value="<?php echo "$pp" ?>" name="productprice" required></td>
- </tr>
-
- <tr>
- <td>Status</td>
- <td><input type="text" value="<?php echo "$stt" ?>" name="status" required></td>
- </tr>
-
- <tr>
- <td colspan="2" align="center"><input type="submit" id="button" name="submit" value="Update"></td>
- </tr>
- </form>
- </table>
+<body>
+  <b>Please update the following:</b></font>
+  <p><font size="2" face="Arial, Helvetica, sans-serif">
+  <form action="edit.php?ID=<? echo $CID ?>" method="POST" enablecab="Yes">
+  product_id:<br>
+  <input type="Text" name="product_id" align="LEFT" required="Yes" size="59" 
+  value="<? echo $CName ?>"><br>
+  product_name:<br>
+  <input type="Text" name="product_name" align="LEFT" required="Yes" size="59"
+  value="<? echo $CAddress ?>"><br>
+  price:<br>
+  <input type="Text" name="price" align="LEFT" required="Yes" size="29"
+  value="<? echo $CCity ?>"><br>
+  amount:<br>
+  <input type="Text" name="amount" align="LEFT" required="Yes" size="2"
+  value="<? echo $CState ?>"><br>
+  </form>
 </body>
 </html>
-<?php
-if($_GET['submit'])
-{
-$productid = $_GET['productid'];
-$productname = $_GET['productname'];
-$productprice = $_GET['productprice'];
-$status = $_GET['status'];
-$query = "UPDATE shop1 SET productid='$productid', productname='$productname', productprice='$productprice', status='$status' WHERE productid='$productid' ";
-$data = pg_query($pg_conn,$query);
-if($data)
-{
-echo "<script>alert('Updated Successfully!')</script>";
-?>
-<meta http-equiv="refresh" content="0; url=https://fptapptech.herokuapp.com/shop1.php">
-<?php
-}
-else
-{
-echo "Failed to update the table.";
-}
-}
-?>
+
