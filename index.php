@@ -20,6 +20,8 @@
 		if($num_rows == 1) 
 		{
 			$row = pg_fetch_array($result, 0);
+			$_SESSION["name"] =  $row['username'];
+			$_SESSION["shop"] =  $row['shop_name'];
 			$users = $row['username'];
 			$pass = $row['password'];
 		}
@@ -27,15 +29,15 @@
 		{
 			$error = "Your Login Name or Password is invalid";
 		}	
-			if ($users == "boss" && $pass == "123qwe")
+			if ($users == "boss")
 			{
 				header("location: db_crud.php");
 			}
-			if ($users == "user1" && $pass == "123qwe")
+			if ($users == "user1")
 			{
 				header("location: db_selection.php");
 			}
-			if ($users == "user2" && $pass == "123qwe") 
+			if ($users == "user2") 
 			{
 				header("location: db_prob.php");
 			}
