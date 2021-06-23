@@ -30,9 +30,9 @@
 	?>
 		<p> Data for Shop B <p/>
 	<?php
-	include("fetch_b.php");
+	include("local_fetch.php");
 	$pg_heroku = pg_connect($conn_string);
-	$table = "productb";
+	$table = "product";
 	pg_close();
 	?>
 	</body>
