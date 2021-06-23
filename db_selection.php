@@ -37,7 +37,7 @@
 		}
 
 		set_error_handler('exceptions_error_handler');
-		$input = "ALL";
+		$input = "Shop_A";
 		$table_name = "product";
 		include("config.php");
 		include("db_display.php");
