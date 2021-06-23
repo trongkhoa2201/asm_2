@@ -11,24 +11,24 @@
 	</head>
 	<body>
 		<form action-"" method-"post>
-	<input type="submit" name="deleteButton"
+	<input type="submit" name="sellButton"
 			value="Input delete data"/> <br/><br/>
 			
-	<input type="submit" name="updateButton"
+	<input type="submit" name="takeButton"
 			value="Input update data"/>
 	</form>
 	<?php
-	
-		if(isset($_POST['deleteButton']))
+		session_start();
+		$shop = $_SESSION["shop"];
+        if(isset($_POST['updateButton'])) 
 		{
-			header("Location: delete1.php?shop=$shop");
-		}
-		if(isset($_POST['updateButton']))
+            header("location : update1.php");
+        }
+		if(isset($_POST['deleteButton'])) 
 		{
-			header("Location: update1.php?shop=$shop");
-		}
+            header("location : delete1.php");
+        }
 	?>
-
 	<?php
 	session_start();
 		function exceptions_error_handler($severity, $message, $filename, $lineno) 
@@ -68,7 +68,7 @@
 			echo "Caught exception: <br/>", $e->getMessage(), "\n";
 		}
 	?>
-						 	<br/>
+		<br/>
 	<?php
 		
 	if($_SESSION["name"]) {
