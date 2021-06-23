@@ -11,11 +11,11 @@
 	</head>
 	<body>
 		<form action-"" method-"post>
-	<input type="submit" name="sellButton"
-			value="Input sell data"/> <br/><br/>
+	<input type="submit" name="deleteButton"
+			value="Input delete data"/> <br/><br/>
 			
-	<input type="submit" name="takeButton"
-			value="Input intake data"/>
+	<input type="submit" name="updateButton"
+			value="Input update data"/>
 	</form>
 	<?php
 	
