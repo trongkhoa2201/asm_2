@@ -30,10 +30,43 @@
 	?>
 		<p> Data for Shop A <p/>
 	<?php
-	include("local_fetch.php");
-	$pg_conn = pg_connect($conn_string);
-	$table = "product";
-	pg_close();
+	session_start();
+		function exceptions_error_handler($severity, $message, $filename, $lineno) 
+		{
+			throw new ErrorException($message, 0, $severity, $filename, $lineno);
+		}
+
+		set_error_handler('exceptions_error_handler');
+		$input = "ALL";
+		$table_name = "product";
+		include("config.php");
+		include("db_display.php");
+		//check if form was submitted
+		if(isset($_POST['submitButton'])) 
+		{ 
+			//get input text
+			$input = $_POST['db_selection'];
+		}
+		# Try to display SQL table
+		try 
+		{
+			echo "<p> DATABASE FROM ".$input."</p>"; 
+			
+			$pg_heroku = pg_connect($conn_string);
+											
+			if ($input == "Shop_A")
+			{
+				# Get data by query
+				$result = pg_query($pg_heroku, "select * from ".$table_name." where shop_name='$input'");
+			}
+			display_table($result);
+			pg_close();
+		}
+		catch (Exception $e) 
+		{
+			#echo 'Caught exception: ',  $e->getMessage(), "\n";
+			echo "Caught exception: <br/>", $e->getMessage(), "\n";
+		}
 	?>
 	</body>
 </html>
