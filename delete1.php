@@ -1,4 +1,4 @@
-<title>Delete Record</title>
+<title>DELETE DATABASE</title>
 <?php
 $host_heroku = "ec2-54-91-188-254.compute-1.amazonaws.com";
 			$db_heroku = "d3avp12ob9g5o8";
@@ -10,7 +10,7 @@ $host_heroku = "ec2-54-91-188-254.compute-1.amazonaws.com";
 			$pg_conn = pg_connect($conn_string);
 
 if (!$conn) {echo "An database connection error occurred.\n"; exit;}
-$result = pg_Exec($conn,"DELETE FROM contacts WHERE cid='$ID'");
+$result = pg_Exec($conn,"DELETE FROM product WHERE shop_name=product");
  if (!$result) {echo "A DELETE query error occurred.\n"; exit;}
 pg_FreeResult($result);
 pg_Close($conn);
