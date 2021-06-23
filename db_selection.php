@@ -31,7 +31,7 @@
 		<p> Data for Shop A <p/>
 	<?php
 	include("fetch_a.php");
-	$pg_heroku = pg_connect($conn_string);
+	$pg_conn = pg_connect($conn_string);
 	$table = "producta";
 	pg_close();
 	?>
