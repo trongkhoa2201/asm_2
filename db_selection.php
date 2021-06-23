@@ -21,7 +21,7 @@
 	
 		if(isset($_POST['deleteButton']))
 		{
-			header("Location: delete1.php?shop-$shop");
+			header("Location: delete1.php?shop=$shop");
 		}
 		if(isset($_POST['updateButton']))
 		{
