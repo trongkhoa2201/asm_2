@@ -68,5 +68,14 @@
 			echo "Caught exception: <br/>", $e->getMessage(), "\n";
 		}
 	?>
+						 	<br/>
+	<?php
+		
+	if($_SESSION["name"]) {
+	?>
+	Click here to <a href="logout.php" tite="Logout">Logout.
+	<?php
+	}else echo "<h1>Please login first .</h1>";
+	?>
 	</body>
 </html>
