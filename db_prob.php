@@ -19,13 +19,13 @@
 	</form>
 	<?php
 	
-		if(isset($_POST['sellButton']))
+		if(isset($_POST['deleteButton']))
 		{
-			header("Location: sell.php?shop-$shop");
+			header("Location: delete1.php?shop=$shop");
 		}
-		if(isset($_POST['takeButton']))
+		if(isset($_POST['updateButton']))
 		{
-			header("Location: takein.php?shop=$shop");
+			header("Location: update1.php?shop=$shop");
 		}
 	?>
 		<p> Data for Shop B <p/>
